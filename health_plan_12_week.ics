@@ -1,0 +1,1125 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//12-Week Health Plan//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:12-Week Health Plan
+BEGIN:VEVENT
+UID:647a006b-d86f-4650-a4e2-475138b63e53@12wk-health-plan
+SUMMARY:Week 1: Workout A — Legs + Push + Core
+DTSTART:20260615T100000
+DTEND:20260615T105500
+DESCRIPTION:Weeks 1–2: 2 sets only\, deliberately light.\nGoal is attenda
+ nce and form — not effort. You should finish feeling "I could have done 
+ more."\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the lo
+ wering phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5
+ –8 min  [Easy pace]\n  Leg press: 3 × 10–12  [Knees to ~90°\, feet s
+ lightly high on plate\, start light]\n  Seated hamstring curl: 3 × 10–1
+ 2  [Critical for ACL protection — never skip]\n  Chest press machine: 3 
+ × 8–12\n  Seated cable row: 3 × 8–12\n  Plank: 3 × 20–40 s
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:4cf66d66-c86e-40b4-84af-70ceb2bbdb75@12wk-health-plan
+SUMMARY:Week 1: Workout B — Hinge + Glutes + Pull + Shoulders
+DTSTART:20260617T100000
+DTEND:20260617T105500
+DESCRIPTION:Weeks 1–2: 2 sets only\, deliberately light.\nGoal is attenda
+ nce and form — not effort. You should finish feeling "I could have done 
+ more."\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the lo
+ wering phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5
+ –8 min\n  Dumbbell Romanian deadlift: 3 × 8–10  [Light\, soft knees\,
+  hinge at hips]\n  Hip abduction machine: 3 × 12–15  [Glute med support
+ s the knee]\n  Lat pulldown: 3 × 8–12\n  Machine shoulder press: 3 × 8
+ –12\n  Glute bridge (floor): 3 × 12–15\n  Standing calf raise: 3 × 1
+ 2–15
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a8719ff8-ca06-43d3-be1e-10a15073d758@12wk-health-plan
+SUMMARY:Week 1: Workout C — Full Body + Core + Carry
+DTSTART:20260619T100000
+DTEND:20260619T105500
+DESCRIPTION:Weeks 1–2: 2 sets only\, deliberately light.\nGoal is attenda
+ nce and form — not effort. You should finish feeling "I could have done 
+ more."\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the lo
+ wering phase: 2–3 sec down every rep.\n\nExercises:\n  Cross-trainer war
+ m-up: 5–8 min  [Low impact]\n  Leg press: 3 × 10–12  [Same rules as W
+ orkout A]\n  Seated hamstring curl: 3 × 10–12\n  Incline dumbbell press
+ : 3 × 8–12\n  Assisted pull-up or cable row: 3 × 8–12\n  Dead bug: 3
+  × 8/side\n  Farmer carry: 3 × 30 m  [Grip + core\, totally knee-safe]
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:52391b0a-91f1-43c2-a19e-95ff4ff5e50f@12wk-health-plan
+SUMMARY:Week 2: Workout A — Legs + Push + Core
+DTSTART:20260622T100000
+DTEND:20260622T105500
+DESCRIPTION:Weeks 1–2: 2 sets only\, deliberately light.\nGoal is attenda
+ nce and form — not effort. You should finish feeling "I could have done 
+ more."\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the lo
+ wering phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5
+ –8 min  [Easy pace]\n  Leg press: 3 × 10–12  [Knees to ~90°\, feet s
+ lightly high on plate\, start light]\n  Seated hamstring curl: 3 × 10–1
+ 2  [Critical for ACL protection — never skip]\n  Chest press machine: 3 
+ × 8–12\n  Seated cable row: 3 × 8–12\n  Plank: 3 × 20–40 s
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:012e45ea-6d33-40ab-bca6-7b6e8eba35f6@12wk-health-plan
+SUMMARY:Week 2: Workout B — Hinge + Glutes + Pull + Shoulders
+DTSTART:20260624T100000
+DTEND:20260624T105500
+DESCRIPTION:Weeks 1–2: 2 sets only\, deliberately light.\nGoal is attenda
+ nce and form — not effort. You should finish feeling "I could have done 
+ more."\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the lo
+ wering phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5
+ –8 min\n  Dumbbell Romanian deadlift: 3 × 8–10  [Light\, soft knees\,
+  hinge at hips]\n  Hip abduction machine: 3 × 12–15  [Glute med support
+ s the knee]\n  Lat pulldown: 3 × 8–12\n  Machine shoulder press: 3 × 8
+ –12\n  Glute bridge (floor): 3 × 12–15\n  Standing calf raise: 3 × 1
+ 2–15
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b7e774b2-c794-4e8f-9343-bc15d72a2872@12wk-health-plan
+SUMMARY:Week 2: Workout C — Full Body + Core + Carry
+DTSTART:20260626T100000
+DTEND:20260626T105500
+DESCRIPTION:Weeks 1–2: 2 sets only\, deliberately light.\nGoal is attenda
+ nce and form — not effort. You should finish feeling "I could have done 
+ more."\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the lo
+ wering phase: 2–3 sec down every rep.\n\nExercises:\n  Cross-trainer war
+ m-up: 5–8 min  [Low impact]\n  Leg press: 3 × 10–12  [Same rules as W
+ orkout A]\n  Seated hamstring curl: 3 × 10–12\n  Incline dumbbell press
+ : 3 × 8–12\n  Assisted pull-up or cable row: 3 × 8–12\n  Dead bug: 3
+  × 8/side\n  Farmer carry: 3 × 30 m  [Grip + core\, totally knee-safe]
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:418287ee-d8b2-46ce-b5ea-84f63348e9dd@12wk-health-plan
+SUMMARY:Week 3: Workout A — Legs + Push + Core
+DTSTART:20260629T100000
+DTEND:20260629T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\n\nKNEE RULES: pain <=3/10
+  that settles in 24h = OK. Control the lowering phase: 2–3 sec down ever
+ y rep.\n\nExercises:\n  Bike warm-up: 5–8 min  [Easy pace]\n  Leg press:
+  3 × 10–12  [Knees to ~90°\, feet slightly high on plate\, start light
+ ]\n  Seated hamstring curl: 3 × 10–12  [Critical for ACL protection —
+  never skip]\n  Chest press machine: 3 × 8–12\n  Seated cable row: 3 ×
+  8–12\n  Plank: 3 × 20–40 s
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:91bee300-015e-4b58-b084-2a10e36337fb@12wk-health-plan
+SUMMARY:Week 3: Workout B — Hinge + Glutes + Pull + Shoulders
+DTSTART:20260701T100000
+DTEND:20260701T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\n\nKNEE RULES: pain <=3/10
+  that settles in 24h = OK. Control the lowering phase: 2–3 sec down ever
+ y rep.\n\nExercises:\n  Bike warm-up: 5–8 min\n  Dumbbell Romanian deadl
+ ift: 3 × 8–10  [Light\, soft knees\, hinge at hips]\n  Hip abduction ma
+ chine: 3 × 12–15  [Glute med supports the knee]\n  Lat pulldown: 3 × 8
+ –12\n  Machine shoulder press: 3 × 8–12\n  Glute bridge (floor): 3 ×
+  12–15\n  Standing calf raise: 3 × 12–15
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9c424aac-2b63-48a0-b68f-3d281c60d4e3@12wk-health-plan
+SUMMARY:Week 3: Workout C — Full Body + Core + Carry
+DTSTART:20260703T100000
+DTEND:20260703T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\n\nKNEE RULES: pain <=3/10
+  that settles in 24h = OK. Control the lowering phase: 2–3 sec down ever
+ y rep.\n\nExercises:\n  Cross-trainer warm-up: 5–8 min  [Low impact]\n  
+ Leg press: 3 × 10–12  [Same rules as Workout A]\n  Seated hamstring cur
+ l: 3 × 10–12\n  Incline dumbbell press: 3 × 8–12\n  Assisted pull-up
+  or cable row: 3 × 8–12\n  Dead bug: 3 × 8/side\n  Farmer carry: 3 × 
+ 30 m  [Grip + core\, totally knee-safe]
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ba3fe67b-9e4e-45bf-975a-cb50128a10f9@12wk-health-plan
+SUMMARY:Week 4: Workout A — Legs + Push + Core
+DTSTART:20260706T100000
+DTEND:20260706T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\n\nKNEE RULES: pain <=3/10
+  that settles in 24h = OK. Control the lowering phase: 2–3 sec down ever
+ y rep.\n\nExercises:\n  Bike warm-up: 5–8 min  [Easy pace]\n  Leg press:
+  3 × 10–12  [Knees to ~90°\, feet slightly high on plate\, start light
+ ]\n  Seated hamstring curl: 3 × 10–12  [Critical for ACL protection —
+  never skip]\n  Chest press machine: 3 × 8–12\n  Seated cable row: 3 ×
+  8–12\n  Plank: 3 × 20–40 s
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:910da045-140f-46db-8a42-653d83687dd8@12wk-health-plan
+SUMMARY:Week 4: Workout B — Hinge + Glutes + Pull + Shoulders
+DTSTART:20260708T100000
+DTEND:20260708T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\n\nKNEE RULES: pain <=3/10
+  that settles in 24h = OK. Control the lowering phase: 2–3 sec down ever
+ y rep.\n\nExercises:\n  Bike warm-up: 5–8 min\n  Dumbbell Romanian deadl
+ ift: 3 × 8–10  [Light\, soft knees\, hinge at hips]\n  Hip abduction ma
+ chine: 3 × 12–15  [Glute med supports the knee]\n  Lat pulldown: 3 × 8
+ –12\n  Machine shoulder press: 3 × 8–12\n  Glute bridge (floor): 3 ×
+  12–15\n  Standing calf raise: 3 × 12–15
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:57e48703-8bfc-4307-85f4-27528da72dd1@12wk-health-plan
+SUMMARY:Week 4: Workout C — Full Body + Core + Carry
+DTSTART:20260710T100000
+DTEND:20260710T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\n\nKNEE RULES: pain <=3/10
+  that settles in 24h = OK. Control the lowering phase: 2–3 sec down ever
+ y rep.\n\nExercises:\n  Cross-trainer warm-up: 5–8 min  [Low impact]\n  
+ Leg press: 3 × 10–12  [Same rules as Workout A]\n  Seated hamstring cur
+ l: 3 × 10–12\n  Incline dumbbell press: 3 × 8–12\n  Assisted pull-up
+  or cable row: 3 × 8–12\n  Dead bug: 3 × 8/side\n  Farmer carry: 3 × 
+ 30 m  [Grip + core\, totally knee-safe]
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2d32ef2a-8ee4-45de-80ce-16a4ac7e990a@12wk-health-plan
+SUMMARY:Week 5: Workout A — Legs + Push + Core
+DTSTART:20260713T100000
+DTEND:20260713T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5–8 m
+ in  [Easy pace]\n  Leg press: 3 × 10–12  [Knees to ~90°\, feet slightl
+ y high on plate\, start light]\n  Seated hamstring curl: 3 × 10–12  [Cr
+ itical for ACL protection — never skip]\n  Chest press machine: 3 × 8
+ –12\n  Seated cable row: 3 × 8–12\n  Plank: 3 × 20–40 s
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d5a19247-ae90-480b-a107-442194000187@12wk-health-plan
+SUMMARY:Week 5: Workout B — Hinge + Glutes + Pull + Shoulders
+DTSTART:20260715T100000
+DTEND:20260715T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5–8 m
+ in\n  Dumbbell Romanian deadlift: 3 × 8–10  [Light\, soft knees\, hinge
+  at hips]\n  Hip abduction machine: 3 × 12–15  [Glute med supports the 
+ knee]\n  Lat pulldown: 3 × 8–12\n  Machine shoulder press: 3 × 8–12\
+ n  Glute bridge (floor): 3 × 12–15\n  Standing calf raise: 3 × 12–15
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:5849e53f-e5df-4605-ab63-85677d82ebc1@12wk-health-plan
+SUMMARY:Week 5: Workout C — Full Body + Core + Carry
+DTSTART:20260717T100000
+DTEND:20260717T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Cross-trainer warm-up
+ : 5–8 min  [Low impact]\n  Leg press: 3 × 10–12  [Same rules as Worko
+ ut A]\n  Seated hamstring curl: 3 × 10–12\n  Incline dumbbell press: 3 
+ × 8–12\n  Assisted pull-up or cable row: 3 × 8–12\n  Dead bug: 3 × 
+ 8/side\n  Farmer carry: 3 × 30 m  [Grip + core\, totally knee-safe]
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:45331419-4cb3-44e8-a293-fb97ed42d6cb@12wk-health-plan
+SUMMARY:Week 6: Workout A — Legs + Push + Core
+DTSTART:20260720T100000
+DTEND:20260720T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5–8 m
+ in  [Easy pace]\n  Leg press: 3 × 10–12  [Knees to ~90°\, feet slightl
+ y high on plate\, start light]\n  Seated hamstring curl: 3 × 10–12  [Cr
+ itical for ACL protection — never skip]\n  Chest press machine: 3 × 8
+ –12\n  Seated cable row: 3 × 8–12\n  Plank: 3 × 20–40 s
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:62119783-289c-4d50-80aa-cebf01bacb97@12wk-health-plan
+SUMMARY:Week 6: Workout B — Hinge + Glutes + Pull + Shoulders
+DTSTART:20260722T100000
+DTEND:20260722T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5–8 m
+ in\n  Dumbbell Romanian deadlift: 3 × 8–10  [Light\, soft knees\, hinge
+  at hips]\n  Hip abduction machine: 3 × 12–15  [Glute med supports the 
+ knee]\n  Lat pulldown: 3 × 8–12\n  Machine shoulder press: 3 × 8–12\
+ n  Glute bridge (floor): 3 × 12–15\n  Standing calf raise: 3 × 12–15
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:6b8965d6-348e-4e63-a983-5eec1e2ec042@12wk-health-plan
+SUMMARY:Week 6: Workout C — Full Body + Core + Carry
+DTSTART:20260724T100000
+DTEND:20260724T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Cross-trainer warm-up
+ : 5–8 min  [Low impact]\n  Leg press: 3 × 10–12  [Same rules as Worko
+ ut A]\n  Seated hamstring curl: 3 × 10–12\n  Incline dumbbell press: 3 
+ × 8–12\n  Assisted pull-up or cable row: 3 × 8–12\n  Dead bug: 3 × 
+ 8/side\n  Farmer carry: 3 × 30 m  [Grip + core\, totally knee-safe]
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:095d49d8-596a-4392-9605-ee20d387b55a@12wk-health-plan
+SUMMARY:Week 7: Workout A — Legs + Push + Core
+DTSTART:20260727T100000
+DTEND:20260727T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5–8 m
+ in  [Easy pace]\n  Leg press: 3 × 10–12  [Knees to ~90°\, feet slightl
+ y high on plate\, start light]\n  Seated hamstring curl: 3 × 10–12  [Cr
+ itical for ACL protection — never skip]\n  Chest press machine: 3 × 8
+ –12\n  Seated cable row: 3 × 8–12\n  Plank: 3 × 20–40 s
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:62aac724-4b2f-451f-861c-66ece2dfeafa@12wk-health-plan
+SUMMARY:Week 7: Workout B — Hinge + Glutes + Pull + Shoulders
+DTSTART:20260729T100000
+DTEND:20260729T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5–8 m
+ in\n  Dumbbell Romanian deadlift: 3 × 8–10  [Light\, soft knees\, hinge
+  at hips]\n  Hip abduction machine: 3 × 12–15  [Glute med supports the 
+ knee]\n  Lat pulldown: 3 × 8–12\n  Machine shoulder press: 3 × 8–12\
+ n  Glute bridge (floor): 3 × 12–15\n  Standing calf raise: 3 × 12–15
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b2e59b7d-ba55-46b7-aec7-0a7660b47ec5@12wk-health-plan
+SUMMARY:Week 7: Workout C — Full Body + Core + Carry
+DTSTART:20260731T100000
+DTEND:20260731T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Cross-trainer warm-up
+ : 5–8 min  [Low impact]\n  Leg press: 3 × 10–12  [Same rules as Worko
+ ut A]\n  Seated hamstring curl: 3 × 10–12\n  Incline dumbbell press: 3 
+ × 8–12\n  Assisted pull-up or cable row: 3 × 8–12\n  Dead bug: 3 × 
+ 8/side\n  Farmer carry: 3 × 30 m  [Grip + core\, totally knee-safe]
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:1756ecdc-04b2-4048-a6c6-7eb6492f6ac8@12wk-health-plan
+SUMMARY:Week 8: Workout A — Legs + Push + Core
+DTSTART:20260803T100000
+DTEND:20260803T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5–8 m
+ in  [Easy pace]\n  Leg press: 3 × 10–12  [Knees to ~90°\, feet slightl
+ y high on plate\, start light]\n  Seated hamstring curl: 3 × 10–12  [Cr
+ itical for ACL protection — never skip]\n  Chest press machine: 3 × 8
+ –12\n  Seated cable row: 3 × 8–12\n  Plank: 3 × 20–40 s
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:3614dc6a-e26f-49bd-9f87-a92cc985416f@12wk-health-plan
+SUMMARY:Week 8: Workout B — Hinge + Glutes + Pull + Shoulders
+DTSTART:20260805T100000
+DTEND:20260805T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5–8 m
+ in\n  Dumbbell Romanian deadlift: 3 × 8–10  [Light\, soft knees\, hinge
+  at hips]\n  Hip abduction machine: 3 × 12–15  [Glute med supports the 
+ knee]\n  Lat pulldown: 3 × 8–12\n  Machine shoulder press: 3 × 8–12\
+ n  Glute bridge (floor): 3 × 12–15\n  Standing calf raise: 3 × 12–15
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:3dc37e0b-30e1-4626-a90b-0e8199d44e9a@12wk-health-plan
+SUMMARY:Week 8: Workout C — Full Body + Core + Carry
+DTSTART:20260807T100000
+DTEND:20260807T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Cross-trainer warm-up
+ : 5–8 min  [Low impact]\n  Leg press: 3 × 10–12  [Same rules as Worko
+ ut A]\n  Seated hamstring curl: 3 × 10–12\n  Incline dumbbell press: 3 
+ × 8–12\n  Assisted pull-up or cable row: 3 × 8–12\n  Dead bug: 3 × 
+ 8/side\n  Farmer carry: 3 × 30 m  [Grip + core\, totally knee-safe]
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:5b510c37-74b3-4dea-ac06-ca922d5c3021@12wk-health-plan
+SUMMARY:Week 9: Workout A — Legs + Push + Core
+DTSTART:20260810T100000
+DTEND:20260810T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5–8 m
+ in  [Easy pace]\n  Leg press: 3 × 10–12  [Knees to ~90°\, feet slightl
+ y high on plate\, start light]\n  Seated hamstring curl: 3 × 10–12  [Cr
+ itical for ACL protection — never skip]\n  Chest press machine: 3 × 8
+ –12\n  Seated cable row: 3 × 8–12\n  Plank: 3 × 20–40 s
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dc5940ae-9d30-4644-bf7e-30b69b3ef146@12wk-health-plan
+SUMMARY:Week 9: Workout B — Hinge + Glutes + Pull + Shoulders
+DTSTART:20260812T100000
+DTEND:20260812T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5–8 m
+ in\n  Dumbbell Romanian deadlift: 3 × 8–10  [Light\, soft knees\, hinge
+  at hips]\n  Hip abduction machine: 3 × 12–15  [Glute med supports the 
+ knee]\n  Lat pulldown: 3 × 8–12\n  Machine shoulder press: 3 × 8–12\
+ n  Glute bridge (floor): 3 × 12–15\n  Standing calf raise: 3 × 12–15
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fb5defd7-c569-4b1b-b667-ed5f3dda1d9f@12wk-health-plan
+SUMMARY:Week 9: Workout C — Full Body + Core + Carry
+DTSTART:20260814T100000
+DTEND:20260814T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Cross-trainer warm-up
+ : 5–8 min  [Low impact]\n  Leg press: 3 × 10–12  [Same rules as Worko
+ ut A]\n  Seated hamstring curl: 3 × 10–12\n  Incline dumbbell press: 3 
+ × 8–12\n  Assisted pull-up or cable row: 3 × 8–12\n  Dead bug: 3 × 
+ 8/side\n  Farmer carry: 3 × 30 m  [Grip + core\, totally knee-safe]
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:0ecd3f90-f6fe-4290-b966-043ef222d13f@12wk-health-plan
+SUMMARY:Week 10: Workout A — Legs + Push + Core
+DTSTART:20260817T100000
+DTEND:20260817T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5–8 m
+ in  [Easy pace]\n  Leg press: 3 × 10–12  [Knees to ~90°\, feet slightl
+ y high on plate\, start light]\n  Seated hamstring curl: 3 × 10–12  [Cr
+ itical for ACL protection — never skip]\n  Chest press machine: 3 × 8
+ –12\n  Seated cable row: 3 × 8–12\n  Plank: 3 × 20–40 s
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:22732dbb-7daf-47f7-8b77-d92b3d8fe10c@12wk-health-plan
+SUMMARY:Week 10: Workout B — Hinge + Glutes + Pull + Shoulders
+DTSTART:20260819T100000
+DTEND:20260819T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5–8 m
+ in\n  Dumbbell Romanian deadlift: 3 × 8–10  [Light\, soft knees\, hinge
+  at hips]\n  Hip abduction machine: 3 × 12–15  [Glute med supports the 
+ knee]\n  Lat pulldown: 3 × 8–12\n  Machine shoulder press: 3 × 8–12\
+ n  Glute bridge (floor): 3 × 12–15\n  Standing calf raise: 3 × 12–15
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d9de1687-9f40-46c5-8057-232f2c795acb@12wk-health-plan
+SUMMARY:Week 10: Workout C — Full Body + Core + Carry
+DTSTART:20260821T100000
+DTEND:20260821T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Cross-trainer warm-up
+ : 5–8 min  [Low impact]\n  Leg press: 3 × 10–12  [Same rules as Worko
+ ut A]\n  Seated hamstring curl: 3 × 10–12\n  Incline dumbbell press: 3 
+ × 8–12\n  Assisted pull-up or cable row: 3 × 8–12\n  Dead bug: 3 × 
+ 8/side\n  Farmer carry: 3 × 30 m  [Grip + core\, totally knee-safe]
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:92d74bb0-7076-47c3-a34b-940391518fd3@12wk-health-plan
+SUMMARY:Week 11: Workout A — Legs + Push + Core
+DTSTART:20260824T100000
+DTEND:20260824T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5–8 m
+ in  [Easy pace]\n  Leg press: 3 × 10–12  [Knees to ~90°\, feet slightl
+ y high on plate\, start light]\n  Seated hamstring curl: 3 × 10–12  [Cr
+ itical for ACL protection — never skip]\n  Chest press machine: 3 × 8
+ –12\n  Seated cable row: 3 × 8–12\n  Plank: 3 × 20–40 s
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:76cbef59-c7ce-4262-95c9-96f3c5136fa8@12wk-health-plan
+SUMMARY:Week 11: Workout B — Hinge + Glutes + Pull + Shoulders
+DTSTART:20260826T100000
+DTEND:20260826T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5–8 m
+ in\n  Dumbbell Romanian deadlift: 3 × 8–10  [Light\, soft knees\, hinge
+  at hips]\n  Hip abduction machine: 3 × 12–15  [Glute med supports the 
+ knee]\n  Lat pulldown: 3 × 8–12\n  Machine shoulder press: 3 × 8–12\
+ n  Glute bridge (floor): 3 × 12–15\n  Standing calf raise: 3 × 12–15
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:8355fca2-a429-4d85-8089-409ff7be83e3@12wk-health-plan
+SUMMARY:Week 11: Workout C — Full Body + Core + Carry
+DTSTART:20260828T100000
+DTEND:20260828T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Cross-trainer warm-up
+ : 5–8 min  [Low impact]\n  Leg press: 3 × 10–12  [Same rules as Worko
+ ut A]\n  Seated hamstring curl: 3 × 10–12\n  Incline dumbbell press: 3 
+ × 8–12\n  Assisted pull-up or cable row: 3 × 8–12\n  Dead bug: 3 × 
+ 8/side\n  Farmer carry: 3 × 30 m  [Grip + core\, totally knee-safe]
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e897dbd1-8810-4638-af63-4747bda0e3b6@12wk-health-plan
+SUMMARY:Week 12: Workout A — Legs + Push + Core
+DTSTART:20260831T100000
+DTEND:20260831T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5–8 m
+ in  [Easy pace]\n  Leg press: 3 × 10–12  [Knees to ~90°\, feet slightl
+ y high on plate\, start light]\n  Seated hamstring curl: 3 × 10–12  [Cr
+ itical for ACL protection — never skip]\n  Chest press machine: 3 × 8
+ –12\n  Seated cable row: 3 × 8–12\n  Plank: 3 × 20–40 s
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:037f2524-efac-47f8-8ab9-2ea86e7844de@12wk-health-plan
+SUMMARY:Week 12: Workout B — Hinge + Glutes + Pull + Shoulders
+DTSTART:20260902T100000
+DTEND:20260902T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Bike warm-up: 5–8 m
+ in\n  Dumbbell Romanian deadlift: 3 × 8–10  [Light\, soft knees\, hinge
+  at hips]\n  Hip abduction machine: 3 × 12–15  [Glute med supports the 
+ knee]\n  Lat pulldown: 3 × 8–12\n  Machine shoulder press: 3 × 8–12\
+ n  Glute bridge (floor): 3 × 12–15\n  Standing calf raise: 3 × 12–15
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e79c6075-236c-41ff-907d-36a9b1c8baaa@12wk-health-plan
+SUMMARY:Week 12: Workout C — Full Body + Core + Carry
+DTSTART:20260904T100000
+DTEND:20260904T105500
+DESCRIPTION:3 sets. Increase weight only when you hit the top of the rep ra
+ nge on ALL sets with ~2 reps still in the tank.\nWeek 5+: add split squats
+  (shallow depth\, hold support) + goblet squats (high box) if knee is happ
+ y.\n\nKNEE RULES: pain <=3/10 that settles in 24h = OK. Control the loweri
+ ng phase: 2–3 sec down every rep.\n\nExercises:\n  Cross-trainer warm-up
+ : 5–8 min  [Low impact]\n  Leg press: 3 × 10–12  [Same rules as Worko
+ ut A]\n  Seated hamstring curl: 3 × 10–12\n  Incline dumbbell press: 3 
+ × 8–12\n  Assisted pull-up or cable row: 3 × 8–12\n  Dead bug: 3 × 
+ 8/side\n  Farmer carry: 3 × 30 m  [Grip + core\, totally knee-safe]
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9d2e9a01-184a-4525-bb28-d1f157872e55@12wk-health-plan
+SUMMARY:Protein breakfast — before Elvanse kicks in
+DTSTART:20260615T070000
+DTEND:20260615T071500
+RRULE:FREQ=DAILY;COUNT=84
+DESCRIPTION:Target: 40–50g protein before appetite disappears.\nE.g. 3–
+ 4 eggs + 2 wholegrain toast + Greek yoghurt\, or oats + protein shake.\nBa
+ nk protein early — mid-morning appetite will drop.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT0M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:00edb3ad-5ec9-424f-a56a-22cb4ad464fb@12wk-health-plan
+SUMMARY:Supplements: D3+K2 + fish oil (with food)
+DTSTART:20260615T083000
+DTEND:20260615T084500
+RRULE:FREQ=DAILY;COUNT=84
+DESCRIPTION:Take with breakfast or any meal containing fat.\nNothing at the
+ se doses conflicts with Elvanse.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT0M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:108bdcdf-ecec-4454-9595-f4dcbad63b8e@12wk-health-plan
+SUMMARY:Post-dinner walk (10–15 min)
+DTSTART:20260615T193000
+DTEND:20260615T194500
+RRULE:FREQ=DAILY;COUNT=84
+DESCRIPTION:Walk after your two biggest meals — this blunts the glucose s
+ pike more than almost anything else.\nCounts towards your daily step targe
+ t.\nBest single habit for your HbA1c.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT0M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:efaad0e2-db15-4dc9-ab92-1abec9e92066@12wk-health-plan
+SUMMARY:Wind-down + magnesium bisglycinate
+DTSTART:20260615T223000
+DTEND:20260615T224500
+RRULE:FREQ=DAILY;COUNT=84
+DESCRIPTION:Take magnesium now (mildly relaxing).\nDim lights\, screens to 
+ night mode.\nTarget bedtime: shift 15–20 min earlier each week toward 12
+ :00–12:30am.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT0M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:24ec3fa7-70b8-447e-9986-e87398687681@12wk-health-plan
+SUMMARY:Weeks 1–2: 6\,500 steps/day · max 3 takeaways
+DTSTART;VALUE=DATE:20260615
+DTEND;VALUE=DATE:20260616
+DESCRIPTION:Step target: 6\,500/day\nTakeaways: max 3 this block\nCardio (a
+ fter gym or one off-day): 10 min\n\nKnee-safe cardio options: stationary b
+ ike\, incline treadmill walk\, cross-trainer\, rower.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT480M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a747ca13-98ec-4a3d-889a-c185ee58c3ad@12wk-health-plan
+SUMMARY:Weeks 3–4: 7\,000 steps/day · max 3 takeaways
+DTSTART;VALUE=DATE:20260629
+DTEND;VALUE=DATE:20260630
+DESCRIPTION:Step target: 7\,000/day\nTakeaways: max 3 this block\nCardio (a
+ fter gym or one off-day): 10 min\n\nKnee-safe cardio options: stationary b
+ ike\, incline treadmill walk\, cross-trainer\, rower.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT480M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fbaf1133-6c24-4b52-a097-4189d2207802@12wk-health-plan
+SUMMARY:Weeks 5–6: 7\,500 steps/day · max 2 takeaways
+DTSTART;VALUE=DATE:20260713
+DTEND;VALUE=DATE:20260714
+DESCRIPTION:Step target: 7\,500/day\nTakeaways: max 2 this block\nCardio (a
+ fter gym or one off-day): 15–20 min\n\nKnee-safe cardio options: station
+ ary bike\, incline treadmill walk\, cross-trainer\, rower.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT480M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b31b8f0b-193d-47c7-98c3-fcc7762c2029@12wk-health-plan
+SUMMARY:Weeks 7–8: 8\,500 steps/day · max 2 takeaways
+DTSTART;VALUE=DATE:20260727
+DTEND;VALUE=DATE:20260728
+DESCRIPTION:Step target: 8\,500/day\nTakeaways: max 2 this block\nCardio (a
+ fter gym or one off-day): 15–20 min\n\nKnee-safe cardio options: station
+ ary bike\, incline treadmill walk\, cross-trainer\, rower.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT480M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b23b6379-f552-4d1c-9cb6-7ac9e2000318@12wk-health-plan
+SUMMARY:Weeks 9–10: 9\,000 steps/day · max 1 takeaways
+DTSTART;VALUE=DATE:20260810
+DTEND;VALUE=DATE:20260811
+DESCRIPTION:Step target: 9\,000/day\nTakeaways: max 1 this block\nCardio (a
+ fter gym or one off-day): 20–25 min\n\nKnee-safe cardio options: station
+ ary bike\, incline treadmill walk\, cross-trainer\, rower.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT480M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:934e91c7-d261-498b-8960-12fd4ed40d80@12wk-health-plan
+SUMMARY:Weeks 11–12: 9\,500 steps/day · max 1 takeaways
+DTSTART;VALUE=DATE:20260824
+DTEND;VALUE=DATE:20260825
+DESCRIPTION:Step target: 9\,500/day\nTakeaways: max 1 this block\nCardio (a
+ fter gym or one off-day): 20–25 min\n\nKnee-safe cardio options: station
+ ary bike\, incline treadmill walk\, cross-trainer\, rower.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT480M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a9fe1ee9-7771-4f14-8884-42ec6ca8d901@12wk-health-plan
+SUMMARY:Phase: Foundation begins (Week 1)
+DTSTART;VALUE=DATE:20260615
+DTEND;VALUE=DATE:20260616
+DESCRIPTION:Show up. Light weights\, learn form\, fix meal structure\, anch
+ or wake time.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT480M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:8ef66f7e-ef77-4723-9503-78758ccb44fa@12wk-health-plan
+SUMMARY:Phase: Build begins (Week 5)
+DTSTART;VALUE=DATE:20260713
+DTEND;VALUE=DATE:20260714
+DESCRIPTION:Add weight/sets\, steps to ~8\,500\, takeaways down to 2/week\,
+  bedtime earlier. Week 5+: add split squats + goblet squats if knee is hap
+ py.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT480M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:0b387250-b865-4474-9b5d-aa82941dbf10@12wk-health-plan
+SUMMARY:Phase: Consolidate begins (Week 9)
+DTSTART;VALUE=DATE:20260810
+DTEND;VALUE=DATE:20260811
+DESCRIPTION:Progressive overload\, steps ~9\,500+\, takeaways 1/week\, lock
+  in routines.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT480M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:558b77c7-bd27-4d1b-89c1-61d4d1974618@12wk-health-plan
+SUMMARY:Week 1 Sunday review (10 min)
+DTSTART:20260621T180000
+DTEND:20260621T181000
+DESCRIPTION:Count your ticks from this week.\n1. One thing that worked\n2. 
+ One thing to fix next week\n3. Set gym days in calendar for next week\n\n8
+ 0% adherence for 12 weeks beats 100% for 2 weeks then quitting.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT0M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d3b75789-4a18-48a1-893d-e24e5487c06f@12wk-health-plan
+SUMMARY:Week 2 Sunday review (10 min)
+DTSTART:20260628T180000
+DTEND:20260628T181000
+DESCRIPTION:Count your ticks from this week.\n1. One thing that worked\n2. 
+ One thing to fix next week\n3. Set gym days in calendar for next week\n\n8
+ 0% adherence for 12 weeks beats 100% for 2 weeks then quitting.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT0M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ec8e058a-f8e1-4f71-9658-3162ce9dfc51@12wk-health-plan
+SUMMARY:Week 3 Sunday review (10 min)
+DTSTART:20260705T180000
+DTEND:20260705T181000
+DESCRIPTION:Count your ticks from this week.\n1. One thing that worked\n2. 
+ One thing to fix next week\n3. Set gym days in calendar for next week\n\n8
+ 0% adherence for 12 weeks beats 100% for 2 weeks then quitting.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT0M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:467d03db-5333-47af-94ab-a3cedbb1fc07@12wk-health-plan
+SUMMARY:Week 4 Sunday review (10 min)
+DTSTART:20260712T180000
+DTEND:20260712T181000
+DESCRIPTION:Count your ticks from this week.\n1. One thing that worked\n2. 
+ One thing to fix next week\n3. Set gym days in calendar for next week\n\n8
+ 0% adherence for 12 weeks beats 100% for 2 weeks then quitting.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT0M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:c9de580c-4f29-4696-99c0-da867d8459b3@12wk-health-plan
+SUMMARY:Week 5 Sunday review (10 min)
+DTSTART:20260719T180000
+DTEND:20260719T181000
+DESCRIPTION:Count your ticks from this week.\n1. One thing that worked\n2. 
+ One thing to fix next week\n3. Set gym days in calendar for next week\n\n8
+ 0% adherence for 12 weeks beats 100% for 2 weeks then quitting.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT0M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:5c199a67-9a69-438f-96ab-3619668ca713@12wk-health-plan
+SUMMARY:Week 6 Sunday review (10 min)
+DTSTART:20260726T180000
+DTEND:20260726T181000
+DESCRIPTION:Count your ticks from this week.\n1. One thing that worked\n2. 
+ One thing to fix next week\n3. Set gym days in calendar for next week\n\n8
+ 0% adherence for 12 weeks beats 100% for 2 weeks then quitting.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT0M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:881651f0-6bbc-487d-a505-97a0724f42b7@12wk-health-plan
+SUMMARY:Week 7 Sunday review (10 min)
+DTSTART:20260802T180000
+DTEND:20260802T181000
+DESCRIPTION:Count your ticks from this week.\n1. One thing that worked\n2. 
+ One thing to fix next week\n3. Set gym days in calendar for next week\n\n8
+ 0% adherence for 12 weeks beats 100% for 2 weeks then quitting.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT0M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:08a23216-5007-40fd-b92a-b0a77d2b7e05@12wk-health-plan
+SUMMARY:Week 8 Sunday review (10 min)
+DTSTART:20260809T180000
+DTEND:20260809T181000
+DESCRIPTION:Count your ticks from this week.\n1. One thing that worked\n2. 
+ One thing to fix next week\n3. Set gym days in calendar for next week\n\n8
+ 0% adherence for 12 weeks beats 100% for 2 weeks then quitting.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT0M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:6a460c2c-2bed-4630-b121-5a9a5bbf1b4a@12wk-health-plan
+SUMMARY:Week 9 Sunday review (10 min)
+DTSTART:20260816T180000
+DTEND:20260816T181000
+DESCRIPTION:Count your ticks from this week.\n1. One thing that worked\n2. 
+ One thing to fix next week\n3. Set gym days in calendar for next week\n\n8
+ 0% adherence for 12 weeks beats 100% for 2 weeks then quitting.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT0M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:8555ed75-1ba1-46c5-a959-b21d8b275ebb@12wk-health-plan
+SUMMARY:Week 10 Sunday review (10 min)
+DTSTART:20260823T180000
+DTEND:20260823T181000
+DESCRIPTION:Count your ticks from this week.\n1. One thing that worked\n2. 
+ One thing to fix next week\n3. Set gym days in calendar for next week\n\n8
+ 0% adherence for 12 weeks beats 100% for 2 weeks then quitting.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT0M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:db96f0e2-65eb-4a9f-ac5b-5bd096f31361@12wk-health-plan
+SUMMARY:Week 11 Sunday review (10 min)
+DTSTART:20260830T180000
+DTEND:20260830T181000
+DESCRIPTION:Count your ticks from this week.\n1. One thing that worked\n2. 
+ One thing to fix next week\n3. Set gym days in calendar for next week\n\n8
+ 0% adherence for 12 weeks beats 100% for 2 weeks then quitting.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT0M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:42afaba6-d0a9-4795-816b-c78760ba1345@12wk-health-plan
+SUMMARY:Week 12 Sunday review (10 min)
+DTSTART:20260906T180000
+DTEND:20260906T181000
+DESCRIPTION:Count your ticks from this week.\n1. One thing that worked\n2. 
+ One thing to fix next week\n3. Set gym days in calendar for next week\n\n8
+ 0% adherence for 12 weeks beats 100% for 2 weeks then quitting.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT0M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:262a4237-2d79-4f1b-b464-64867d5e7258@12wk-health-plan
+SUMMARY:ACTION: Message prescriber about Elvanse timing
+DTSTART;VALUE=DATE:20260615
+DTEND;VALUE=DATE:20260616
+DESCRIPTION:Ask about moving dose to 8:00–8:30am (currently 10:30am).\nRe
+ ason: medication still active near midnight — disrupting sleep.\nDon't c
+ hange timing on your own — just raise it at your next appointment.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT480M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b38e2b47-90d9-4c8c-8c9c-5dfd647c338b@12wk-health-plan
+SUMMARY:ACTION: Book HbA1c recheck (~14 Sep 2026)
+DTSTART;VALUE=DATE:20260615
+DTEND;VALUE=DATE:20260616
+DESCRIPTION:Book a blood test for around 14 September 2026 (~3 months out).
+ \nCurrent HbA1c: 42 mmol/mol (lower edge of prediabetic range — very rev
+ ersible).\nLosing 5–7 kg + 3x/week strength training can bring this back
+  to normal.\nSeeing the number drop is powerful motivation.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT480M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d3bf845b-6695-4cb8-b1fa-54452c2eb045@12wk-health-plan
+SUMMARY:ACTION: Get physio green-light on gym programme
+DTSTART;VALUE=DATE:20260615
+DTEND;VALUE=DATE:20260616
+DESCRIPTION:Show physio the workout plan and get sign-off.\nKey exercises t
+ o confirm: leg press\, hamstring curl\, Romanian deadlift.\nPost-ACL (Feb 
+ 2024) — confirm range-of-motion limits.\nNo running\, jumping\, plyometr
+ ics\, or pivoting until cleared.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT480M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:aebdd26c-debe-4011-8309-e52d36fbd72f@12wk-health-plan
+SUMMARY:HbA1c recheck — 3-month milestone
+DTSTART;VALUE=DATE:20260914
+DTEND;VALUE=DATE:20260915
+DESCRIPTION:This is your 12-week reward — seeing the number improve.\nBoo
+ k this if not already done.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1440M
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+END:VCALENDAR
