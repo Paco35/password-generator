@@ -1,14 +1,29 @@
 #!/usr/bin/env python3
 """
 iConnect Payroll Extract Validator — Enfield Pension Fund 2026/27
-Validates a CSV payroll extract against the File Completion Guide and
-writes all flags to an Excel workbook.
+Validates one or more CSV payroll extracts against the File Completion Guide
+and writes all flags to an Excel workbook.
+
+Within-file checks run on every file independently (mandatory/conditional
+fields, formats, contribution bands, 50/50 logic, etc). When more than one
+file is supplied, an additional cross-period pass chains the periods
+together per member (matched on NI_NUMBER + PAY_REF_1-3) to catch things a
+single file can never reveal on its own: cumulative figures that don't
+add up between periods, members who vanish without a DATE_OF_LEAVING,
+opted-out members who keep accruing pay, and so on.
 
 Usage:
-    python iconnect_validator.py <extract.csv> [output.xlsx]
+    python iconnect_validator.py <extract.csv> [-o output.xlsx]
+    python iconnect_validator.py april.csv may.csv june.csv [-o output.xlsx]
+    python iconnect_validator.py --dir ./extracts/ [-o output.xlsx]
+
+Files are sorted by PAYROLL_PERIOD_END_DATE automatically — pass them in
+any order or filename convention.
 """
 
+import argparse
 import csv
+import glob
 import re
 import sys
 import os
@@ -76,6 +91,21 @@ NI_RE       = re.compile(r"^[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z]\d{6}[A-D]$", re.
 POSTCODE_RE = re.compile(r"^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$", re.I)
 DATE_RE     = re.compile(r"^\d{2}/\d{2}/\d{4}$")
 
+# Cumulative field ↔ this-period field pairs used for cross-period checks.
+# section: None = always checked, "main" = only when not in 50/50,
+# "5050" = only when in 50/50.
+CUMULATIVE_PAIRS = [
+    ("MAIN_SECTION_CUMULATIVE_PEN_PAY",                  "PENSIONABLE_PAY",              "main"),
+    ("5050_SECTION_CUMULATIVE_PEN_PAY",                  "PENSIONABLE_PAY",              "5050"),
+    ("CUMULATIVE_EMPLOYEES_MAIN_SECTION_SCHEME_CONTS",   "EMPLOYEES_MAIN_SECTION_CONTS", None),
+    ("CUMULATIVE_EMPLOYERS_SCHEME_CONTS",                "EMPLOYERS_CONTS",              None),
+    ("CUMULATIVE_EMPLOYEES_5050_CONTS",                  "EMPLOYEES_5050_CONTS",         None),
+    ("CUMULATIVE_APCs",                                  "APCs",                         None),
+    ("CUMULATIVE_SCAPCs",                                "SCAPCs",                       None),
+]
+
+MAX_GAP_DAYS = 40   # slack above a calendar month for "consecutive" periods
+
 # ── Flag catalogue ───────────────────────────────────────────────────────────────
 # code → (severity_category, short_description)
 FLAGS = {
@@ -113,6 +143,17 @@ FLAGS = {
     "F032": ("PAY_REF_TOO_LONG",        "PAY_REF exceeds maximum 12 characters"),
     "F033": ("MISSING_COLUMN",          "One or more required columns are absent from the header"),
     "F034": ("DOL_AND_OPTOUT_SAME_ROW", "DATE_OF_LEAVING and OPT_OUT_DATE both set — only populate OPT_OUT_DATE for opt-outs"),
+    # Cross-period checks — only raised when 2+ files are supplied
+    "F035": ("MISSING_PERIOD_GAP",       "Period end dates are not consecutive months — a monthly submission may be missing"),
+    "F036": ("MEMBER_VANISHED",          "Member present in the previous period is missing here with no DATE_OF_LEAVING"),
+    "F037": ("NEW_MEMBER_NO_JOIN_DATE",  "Member appears mid-year without DATE_JOINED_PENSION_SCHEME or OPT_IN_DATE"),
+    "F038": ("CUMULATIVE_MISMATCH",      "Cumulative ≠ previous period's cumulative + this period's figure (±0.02)"),
+    "F039": ("CUMULATIVE_DECREASED",     "Cumulative fell between periods outside an opt-out refund row"),
+    "F040": ("POST_OPTOUT_ACTIVITY",     "New pay/contributions or changed cumulatives after a reported opt-out"),
+    "F041": ("POST_OPTOUT_RATE_NOT_ZERO","SCHEME_CONT_RATE is not 0 in a period after the opt-out"),
+    "F042": ("OPT_IN_CARRIED_FORWARD",   "OPT_IN_DATE still populated in a period after the one it was first reported in"),
+    "F043": ("LEAVER_REAPPEARED",        "Member with a prior DATE_OF_LEAVING reappears with no new join/opt-in date"),
+    "F044": ("STATIC_DATA_CHANGED",      "DOB or GENDER changed for the same member between periods"),
 }
 
 FIX_GUIDANCE = {
@@ -150,6 +191,16 @@ FIX_GUIDANCE = {
     "F032": "PAY_REF values must be at most 12 characters. Agree the reference format with the Fund and keep it stable.",
     "F033": "Restore all missing column headers from the Fund-issued template. All 63 columns must be present.",
     "F034": "Use OPT_OUT_DATE for opt-outs. Only use DATE_OF_LEAVING when the member has physically left employment.",
+    "F035": "Check whether a monthly submission is missing between these two period end dates. If the gap is intentional (e.g. an annually-paid employer), confirm with the Fund.",
+    "F036": "Confirm whether this member left, transferred, or was omitted in error. If they left, resubmit with DATE_OF_LEAVING and REASON_FOR_LEAVING populated — never simply drop a member from the extract.",
+    "F037": "New starters and re-joiners must have DATE_JOINED_PENSION_SCHEME or OPT_IN_DATE populated in the period they first appear.",
+    "F038": "Cumulative year-to-date figures should equal the previous period's cumulative plus this period's amount. Check for a missed period, a miscalculation, or a manual override.",
+    "F039": "A cumulative figure has fallen between periods. This is only expected on an opt-out refund row (PENSIONABLE_PAY=0, contributions reversed). Otherwise investigate a data-entry or reset error.",
+    "F040": "Opted-out members must not accrue new pensionable pay, contributions, or cumulative changes after the opt-out is reported. Confirm the member remains opted out or process a rejoin via OPT_IN_DATE.",
+    "F041": "SCHEME_CONT_RATE must be 0 in every period after an opt-out, until the member rejoins or leaves.",
+    "F042": "OPT_IN_DATE should only appear in the pay period the opt-in/re-enrolment is first reported. Clear it in subsequent periods.",
+    "F043": "A member with a prior DATE_OF_LEAVING has reappeared. Populate DATE_JOINED_PENSION_SCHEME (new post) or OPT_IN_DATE (rejoin) to explain the reappearance.",
+    "F044": "DOB and GENDER should not change for the same member. Verify this is not a data-entry error or a mismatched NI/PAY_REF combination.",
 }
 
 
@@ -232,10 +283,29 @@ def _is_5050(row):
     return False
 
 
-# ── Validation engine ───────────────────────────────────────────────────────────────
+def _member_key(row):
+    """Matching key per the guide: NI_NUMBER + PAY_REF_1-3 combination."""
+    return (
+        str(_v(row, "NI_NUMBER")).strip().upper(),
+        str(_v(row, "PAY_REF_1")).strip().upper(),
+        str(_v(row, "PAY_REF_2")).strip().upper(),
+        str(_v(row, "PAY_REF_3")).strip().upper(),
+    )
+
+
+def _first_valid_period_date(rows):
+    """First row-order PAYROLL_PERIOD_END_DATE that parses as a valid date."""
+    for row in rows:
+        v = _v(row, "PAYROLL_PERIOD_END_DATE")
+        if _date_check(v) is True:
+            return datetime.strptime(str(v).strip(), "%d/%m/%Y")
+    return None
+
+
+# ── Single-file validation engine ───────────────────────────────────────────────────
 
 def validate(csv_path):
-    """Return (file_flags, row_flags, rows, actual_headers)."""
+    """Return (file_flags, row_flags, rows, actual_headers) for one CSV file."""
 
     file_flags = []   # file-level issues
     row_flags  = []   # per-row issues
@@ -263,7 +333,7 @@ def validate(csv_path):
             code="F011", detail="Column order does not match the required sequence."))
 
     # Collect all period-end dates for cross-row check
-    period_dates: dict[str, list[int]] = defaultdict(list)
+    period_dates = defaultdict(list)
 
     def flag(rnum, ni, field, code, detail=""):
         row_flags.append(dict(row=rnum, ni=ni, field=field,
@@ -528,6 +598,182 @@ def validate(csv_path):
     return file_flags, row_flags, rows, headers
 
 
+# ── Cross-period validation engine ──────────────────────────────────────────────────
+
+def cross_period_checks(period_results):
+    """
+    period_results: list of dicts, already sorted chronologically by period_date:
+        {file, period_date (datetime|None), period_date_str, rows, headers}
+
+    Returns (cross_flags, coverage_rows):
+        cross_flags    — list of dicts: file, period, row, ni, field, code, detail
+        coverage_rows  — one dict per file: file, period, rows, members_added, members_dropped
+    """
+    cross_flags   = []
+    coverage_rows = []
+
+    def cflag(file, period_str, rnum, ni, field, code, detail=""):
+        cross_flags.append(dict(file=file, period=period_str, row=rnum, ni=ni,
+                                 field=field, code=code, detail=detail))
+
+    # F035 — gaps between consecutive dated periods
+    dated = [p for p in period_results if p["period_date"] is not None]
+    for prev, cur in zip(dated, dated[1:]):
+        gap = (cur["period_date"] - prev["period_date"]).days
+        if gap > MAX_GAP_DAYS:
+            cflag(cur["file"], cur["period_date_str"], "FILE", "—", "PAYROLL_PERIOD_END_DATE",
+                  "F035",
+                  f"{gap} days since the previous period ({prev['period_date_str']} → "
+                  f"{cur['period_date_str']}); a submission may be missing")
+
+    member_state = {}   # member key -> tracked state dict
+    prev_keys    = None
+
+    for pidx, period in enumerate(period_results):
+        file  = period["file"]
+        pstr  = period["period_date_str"]
+        rows  = period["rows"]
+
+        cur_keys       = set()
+        members_added  = 0
+        members_dropped = 0
+
+        for ridx, row in enumerate(rows, start=2):
+            key = _member_key(row)
+            if not key[0]:
+                continue   # blank NI — already flagged by the single-file pass
+            cur_keys.add(key)
+            ni = _v(row, "NI_NUMBER")
+
+            dol    = _v(row, "DATE_OF_LEAVING")
+            optout = _v(row, "OPT_OUT_DATE")
+            optin  = _v(row, "OPT_IN_DATE")
+            djp    = _v(row, "DATE_JOINED_PENSION_SCHEME")
+            dob    = str(_v(row, "DOB")).strip()
+            gender = str(_v(row, "GENDER")).strip().upper()
+            is_50  = _is_5050(row)
+            pen_pay     = _to_float(_v(row, "PENSIONABLE_PAY")) or 0
+            scheme_rate = _to_float(_v(row, "SCHEME_CONT_RATE"))
+            emp_main    = _to_float(_v(row, "EMPLOYEES_MAIN_SECTION_CONTS")) or 0
+            emp_50      = _to_float(_v(row, "EMPLOYEES_5050_CONTS")) or 0
+            is_refund_row = (not _blank(optout)) and pen_pay == 0
+
+            state = member_state.get(key)
+
+            if state is None:
+                members_added += 1
+                if pidx > 0 and _blank(djp) and _blank(optin):
+                    cflag(file, pstr, ridx, ni, "DATE_JOINED_PENSION_SCHEME", "F037",
+                          "Member appears for the first time mid-year with no "
+                          "DATE_JOINED_PENSION_SCHEME or OPT_IN_DATE")
+            else:
+                # Reappeared after previously being marked as a leaver
+                if state.get("left") and _blank(djp) and _blank(optin):
+                    cflag(file, pstr, ridx, ni, "DATE_JOINED_PENSION_SCHEME", "F043",
+                          f"Member had DATE_OF_LEAVING reported in {state.get('left_period')} "
+                          f"and reappears with no new join/opt-in date")
+
+                # Static data changes
+                if state.get("dob") and dob and state["dob"] != dob:
+                    cflag(file, pstr, ridx, ni, "DOB", "F044",
+                          f"DOB changed from {state['dob']} to {dob}")
+                if state.get("gender") and gender and state["gender"] != gender:
+                    cflag(file, pstr, ridx, ni, "GENDER", "F044",
+                          f"GENDER changed from {state['gender']} to {gender}")
+
+                prev_cum = state.get("cumulatives", {})
+
+                # Cumulative consistency checks
+                if not is_refund_row:
+                    for cum_field, period_field, section in CUMULATIVE_PAIRS:
+                        if section == "main" and is_50:
+                            continue
+                        if section == "5050" and not is_50:
+                            continue
+                        cur_cum = _to_float(_v(row, cum_field))
+                        if cur_cum is None:
+                            continue
+                        prev_val = prev_cum.get(cum_field)
+                        if prev_val is None:
+                            continue   # no baseline yet for this field
+                        per_val = _to_float(_v(row, period_field))
+                        if cur_cum < prev_val - 0.02:
+                            cflag(file, pstr, ridx, ni, cum_field, "F039",
+                                  f"Cumulative fell from {prev_val:.2f} to {cur_cum:.2f} between periods")
+                        elif per_val is not None:
+                            expected = prev_val + per_val
+                            if abs(cur_cum - expected) > 0.02:
+                                cflag(file, pstr, ridx, ni, cum_field, "F038",
+                                      f"Expected {expected:.2f} ({prev_val:.2f} + {per_val:.2f}), got {cur_cum:.2f}")
+
+                # Post-opt-out activity: opted out previously, not opting in/out again this row
+                if state.get("opted_out") and _blank(optout) and _blank(optin):
+                    if pen_pay != 0 or emp_main != 0 or emp_50 != 0:
+                        cflag(file, pstr, ridx, ni, "PENSIONABLE_PAY", "F040",
+                              "New pensionable pay or contributions reported after a prior opt-out")
+                    else:
+                        for cum_field, _period_field, section in CUMULATIVE_PAIRS:
+                            if section == "main" and is_50:
+                                continue
+                            if section == "5050" and not is_50:
+                                continue
+                            cur_cum  = _to_float(_v(row, cum_field))
+                            prev_val = prev_cum.get(cum_field)
+                            if cur_cum is not None and prev_val is not None and abs(cur_cum - prev_val) > 0.02:
+                                cflag(file, pstr, ridx, ni, cum_field, "F040",
+                                      f"Cumulative changed from {prev_val:.2f} to {cur_cum:.2f} after "
+                                      f"opt-out; it should carry forward unchanged")
+                    if scheme_rate is not None and scheme_rate != 0:
+                        cflag(file, pstr, ridx, ni, "SCHEME_CONT_RATE", "F041",
+                              f"SCHEME_CONT_RATE is {scheme_rate}, expected 0 in a period after opt-out")
+
+                # OPT_IN_DATE carried forward beyond the period it was first reported
+                if state.get("opt_in_reported") and not _blank(optin):
+                    cflag(file, pstr, ridx, ni, "OPT_IN_DATE", "F042",
+                          "OPT_IN_DATE still populated in a later period; clear it once the "
+                          "opt-in has been processed")
+
+            # ── Roll state forward for the next period ──
+            new_state = dict(state) if state else {}
+            new_state["dob"]    = dob or new_state.get("dob")
+            new_state["gender"] = gender or new_state.get("gender")
+            new_state["cumulatives"] = {
+                cf: _to_float(_v(row, cf)) for cf, _, _ in CUMULATIVE_PAIRS
+                if _to_float(_v(row, cf)) is not None
+            }
+            if not _blank(dol):
+                new_state["left"] = True
+                new_state["left_period"] = pstr
+            if not _blank(optout) and _blank(optin):
+                new_state["opted_out"] = True
+            if not _blank(optin):
+                new_state["opted_out"]      = False
+                new_state["opt_in_reported"] = True
+            elif state and state.get("opt_in_reported"):
+                new_state["opt_in_reported"] = False   # cleared correctly this period
+            if not _blank(djp) or not _blank(optin):
+                new_state["left"] = False              # treat as (re)joined
+            member_state[key] = new_state
+
+        # Members present last period but missing this period
+        if prev_keys is not None:
+            for key in (prev_keys - cur_keys):
+                state = member_state.get(key, {})
+                if not state.get("left"):
+                    cflag(file, pstr, "—", key[0], "—", "F036",
+                          "Present in the previous period but missing here with no "
+                          "DATE_OF_LEAVING recorded")
+                    members_dropped += 1
+
+        coverage_rows.append(dict(
+            file=file, period=pstr, rows=len(rows),
+            members_added=members_added, members_dropped=members_dropped,
+        ))
+        prev_keys = cur_keys
+
+    return cross_flags, coverage_rows
+
+
 # ── Excel builder ───────────────────────────────────────────────────────────────────────
 
 def _thin_border():
@@ -590,50 +836,58 @@ SEV_FILL = {
     "PAY_REF_TOO_LONG":       "FFA500",
     "MISSING_COLUMN":         "FF4C4C",
     "DOL_AND_OPTOUT_SAME_ROW":"FF4C4C",
+    # Cross-period
+    "MISSING_PERIOD_GAP":        "FFA500",
+    "MEMBER_VANISHED":           "FF4C4C",
+    "NEW_MEMBER_NO_JOIN_DATE":   "FFA500",
+    "CUMULATIVE_MISMATCH":       "FFA500",
+    "CUMULATIVE_DECREASED":      "FF4C4C",
+    "POST_OPTOUT_ACTIVITY":      "FF4C4C",
+    "POST_OPTOUT_RATE_NOT_ZERO": "FFA500",
+    "OPT_IN_CARRIED_FORWARD":    "FFA500",
+    "LEAVER_REAPPEARED":         "FFA500",
+    "STATIC_DATA_CHANGED":       "FFF2CC",
 }
 
 
-def build_excel(file_flags, row_flags, rows, output_path, source_filename):
+def build_excel(all_flags, cross_flags, coverage_rows, output_path):
+    """
+    all_flags:   combined single-file flags across every input file, each dict:
+                 file, period, row, ni, field, code, detail
+    cross_flags: cross-period flags, same shape
+    coverage_rows: one dict per file: file, period, rows, members_added, members_dropped
+    """
     wb = openpyxl.Workbook()
     border = _thin_border()
 
-    all_flags = [
-        dict(row="FILE", ni="—", field=f["field"],
-             code=f["code"],
-             sev=FLAGS[f["code"]][0],
-             desc=FLAGS[f["code"]][1],
-             detail=f["detail"])
-        for f in file_flags
-    ] + [
-        dict(row=f["row"], ni=f["ni"], field=f["field"],
-             code=f["code"],
-             sev=FLAGS[f["code"]][0],
-             desc=FLAGS[f["code"]][1],
-             detail=f["detail"])
-        for f in row_flags
-    ]
+    def enrich(f):
+        sev, desc = FLAGS[f["code"]]
+        return dict(f, sev=sev, desc=desc)
+
+    enriched_flags = [enrich(f) for f in all_flags]
+    enriched_cross = [enrich(f) for f in cross_flags]
 
     # ── Sheet 1: Validation Results ──────────────────────────────────────────────────────
     ws1 = wb.active
     ws1.title = "Validation Results"
-    ws1.append(["Row", "NI Number", "Field", "Flag Code",
+    ws1.append(["File", "Period", "Row", "NI Number", "Field", "Flag Code",
                 "Severity Category", "Description", "Detail"])
     _style_header(ws1, 1, "2E4057")
     ws1.freeze_panes = "A2"
 
-    for f in all_flags:
-        ws1.append([f["row"], f["ni"], f["field"], f["code"],
+    for f in enriched_flags:
+        ws1.append([f["file"], f["period"], f["row"], f["ni"], f["field"], f["code"],
                     f["sev"], f["desc"], f["detail"]])
         r = ws1.max_row
         hex_col = SEV_FILL.get(f["sev"], "FFFFFF")
         fill = PatternFill("solid", fgColor=hex_col)
-        for c in range(1, 8):
+        for c in range(1, 10):
             ws1.cell(r, c).border = border
-        ws1.cell(r, 4).fill = fill   # colour the Flag Code cell
+        ws1.cell(r, 6).fill = fill   # colour the Flag Code cell
 
-    if not all_flags:
-        ws1.append(["—", "—", "—", "PASS", "No issues found",
-                    "All checks passed for this file.", ""])
+    if not enriched_flags:
+        ws1.append(["—", "—", "—", "—", "—", "PASS", "No issues found",
+                    "All checks passed for the file(s) supplied.", ""])
 
     ws1.auto_filter.ref = ws1.dimensions
     _auto_width(ws1)
@@ -646,8 +900,8 @@ def build_excel(file_flags, row_flags, rows, output_path, source_filename):
     ws2.freeze_panes = "A2"
 
     counter = defaultdict(list)
-    for f in all_flags:
-        counter[f["code"]].append(str(f["row"]))
+    for f in enriched_flags + enriched_cross:
+        counter[f["code"]].append(f"{f['file']}:{f['row']}")
 
     for code in sorted(counter):
         rows_aff = counter[code]
@@ -663,53 +917,95 @@ def build_excel(file_flags, row_flags, rows, output_path, source_filename):
 
     _auto_width(ws2)
 
-    # ── Sheet 3: Flag Reference ────────────────────────────────────────────────────────────
-    ws3 = wb.create_sheet("Flag Reference")
-    ws3.append(["Flag Code", "Severity Category", "Short Description",
-                "How to Fix / Guide Reference"])
-    _style_header(ws3, 1, "375623")
+    # ── Sheet 3: Cross-Period Checks ─────────────────────────────────────────────────────
+    ws3 = wb.create_sheet("Cross-Period Checks")
+    ws3.append(["File", "Period", "Row", "NI Number", "Field", "Flag Code",
+                "Severity Category", "Description", "Detail"])
+    _style_header(ws3, 1, "2E4057")
     ws3.freeze_panes = "A2"
+
+    for f in enriched_cross:
+        ws3.append([f["file"], f["period"], f["row"], f["ni"], f["field"], f["code"],
+                    f["sev"], f["desc"], f["detail"]])
+        r = ws3.max_row
+        hex_col = SEV_FILL.get(f["sev"], "FFFFFF")
+        fill = PatternFill("solid", fgColor=hex_col)
+        for c in range(1, 10):
+            ws3.cell(r, c).border = border
+        ws3.cell(r, 6).fill = fill
+
+    if not enriched_cross:
+        note = ("No cross-period issues found." if len(coverage_rows) > 1
+                else "Only one period was supplied — cross-period checks need 2+ files.")
+        ws3.append(["—", "—", "—", "—", "—", "—", "—", note, ""])
+
+    ws3.auto_filter.ref = ws3.dimensions
+    _auto_width(ws3)
+
+    # ── Sheet 4: Period Coverage ─────────────────────────────────────────────────────────
+    ws4 = wb.create_sheet("Period Coverage")
+    ws4.append(["File", "Period End Date", "Rows", "Members Added", "Members Dropped"])
+    _style_header(ws4, 1, "375623")
+    ws4.freeze_panes = "A2"
+
+    for c in coverage_rows:
+        ws4.append([c["file"], c["period"], c["rows"], c["members_added"], c["members_dropped"]])
+        r = ws4.max_row
+        for col in range(1, 6):
+            ws4.cell(r, col).border = border
+
+    if not coverage_rows:
+        ws4.append(["—", "—", 0, 0, 0])
+
+    _auto_width(ws4)
+
+    # ── Sheet 5: Flag Reference ────────────────────────────────────────────────────────────
+    ws5 = wb.create_sheet("Flag Reference")
+    ws5.append(["Flag Code", "Severity Category", "Short Description",
+                "How to Fix / Guide Reference"])
+    _style_header(ws5, 1, "375623")
+    ws5.freeze_panes = "A2"
 
     for code in sorted(FLAGS):
         sev, desc = FLAGS[code]
         fix = FIX_GUIDANCE.get(code, "")
-        ws3.append([code, sev, desc, fix])
-        r = ws3.max_row
+        ws5.append([code, sev, desc, fix])
+        r = ws5.max_row
         hex_col = SEV_FILL.get(sev, "FFFFFF")
         fill = PatternFill("solid", fgColor=hex_col)
-        ws3.cell(r, 1).fill = fill
+        ws5.cell(r, 1).fill = fill
         for c in range(1, 5):
-            ws3.cell(r, c).border = border
-            ws3.cell(r, c).alignment = Alignment(wrap_text=True, vertical="top")
+            ws5.cell(r, c).border = border
+            ws5.cell(r, c).alignment = Alignment(wrap_text=True, vertical="top")
 
-    _auto_width(ws3)
-    ws3.column_dimensions["D"].width = 75
+    _auto_width(ws5)
+    ws5.column_dimensions["D"].width = 75
 
-    # ── Sheet 4: Colour Key ──────────────────────────────────────────────────────────────
-    ws4 = wb.create_sheet("Colour Key")
-    ws4.append(["Colour", "Meaning", "Example Flag Codes"])
-    _style_header(ws4, 1, "2E4057")
+    # ── Sheet 6: Colour Key ──────────────────────────────────────────────────────────────
+    ws6 = wb.create_sheet("Colour Key")
+    ws6.append(["Colour", "Meaning", "Example Flag Codes"])
+    _style_header(ws6, 1, "2E4057")
     key_rows = [
-        ("FF4C4C", "HIGH — file will likely be rejected / data loss risk",
-         "F001, F002, F003, F007, F008, F010, F011, F033, F034"),
+        ("FF4C4C", "HIGH — file will likely be rejected / data or compliance risk",
+         "F001, F002, F003, F007, F008, F010, F011, F033, F034, F036, F039, F040"),
         ("FFA500", "MEDIUM — incorrect data that affects member records",
-         "F005, F009, F012, F013, F021, F022, F023, F025, F031"),
+         "F005, F009, F012, F013, F021, F022, F023, F025, F031, F035, F037, F038, F041, F042, F043"),
         ("FFF2CC", "LOW — formatting issue that should be corrected",
-         "F016, F027, F028, F029, F030"),
+         "F016, F027, F028, F029, F030, F044"),
     ]
     for hex_col, meaning, examples in key_rows:
-        ws4.append(["", meaning, examples])
-        r = ws4.max_row
-        ws4.cell(r, 1).fill = PatternFill("solid", fgColor=hex_col)
+        ws6.append(["", meaning, examples])
+        r = ws6.max_row
+        ws6.cell(r, 1).fill = PatternFill("solid", fgColor=hex_col)
         for c in range(1, 4):
-            ws4.cell(r, c).border = border
-    _auto_width(ws4)
+            ws6.cell(r, c).border = border
+    _auto_width(ws6)
 
-    # ── Sheet 5: Contribution Rates 2026/27 ─────────────────────────────────────────────
-    ws5 = wb.create_sheet("Contribution Rates 2026-27")
-    ws5.append(["Band", "Actual Pensionable Pay — From (£)", "To (£)",
+    # ── Sheet 7: Contribution Rates 2026/27 ─────────────────────────────────────────────
+    ws7 = wb.create_sheet("Contribution Rates 2026-27")
+    ws7.append(["Band", "Actual Pensionable Pay — From (£)", "To (£)",
                 "Main Section Rate", "50/50 Section Rate"])
-    _style_header(ws5, 1, "375623")
+    _style_header(ws7, 1, "375623")
 
     band_data = [
         (1, "0.00",          "18,400.00",   "5.50%", "2.75%"),
@@ -723,68 +1019,142 @@ def build_excel(file_flags, row_flags, rows, output_path, source_filename):
         (9, "210,700.01",    "No upper limit","12.50%","6.25%"),
     ]
     for bd in band_data:
-        ws5.append(list(bd))
+        ws7.append(list(bd))
         for c in range(1, 6):
-            ws5.cell(ws5.max_row, c).border = border
+            ws7.cell(ws7.max_row, c).border = border
 
-    ws5.append([])
+    ws7.append([])
     note = ("Notes:\n"
             "• Rates apply 1 April 2026 – 31 March 2027.\n"
             "• Use the member's ACTUAL pensionable pay (not FTE) to determine their band.\n"
             "• Part-time members: compare their actual contracted pay to the bands, then record the matching rate in SCHEME_CONT_RATE.\n"
             "• The 50/50 rate is exactly half the main-section rate.\n"
             "• Thresholds reflect a 3.8% CPI uplift from 2025/26; percentage rates are unchanged.")
-    ws5.append([note])
-    ws5.cell(ws5.max_row, 1).alignment = Alignment(wrap_text=True, vertical="top")
-    ws5.row_dimensions[ws5.max_row].height = 90
-    ws5.merge_cells(f"A{ws5.max_row}:E{ws5.max_row}")
-    _auto_width(ws5)
+    ws7.append([note])
+    ws7.cell(ws7.max_row, 1).alignment = Alignment(wrap_text=True, vertical="top")
+    ws7.row_dimensions[ws7.max_row].height = 90
+    ws7.merge_cells(f"A{ws7.max_row}:E{ws7.max_row}")
+    _auto_width(ws7)
 
     wb.save(output_path)
 
 
 # ── Main ─────────────────────────────────────────────────────────────────────────────────
 
+def _parse_args():
+    parser = argparse.ArgumentParser(
+        description="Validate i-Connect payroll extract CSV(s) against the Enfield "
+                    "Pension Fund 2026/27 File Completion Guide.",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=(
+            "Examples:\n"
+            "  python iconnect_validator.py april.csv\n"
+            "  python iconnect_validator.py april.csv may.csv june.csv -o report.xlsx\n"
+            "  python iconnect_validator.py --dir ./extracts/ -o report.xlsx\n"
+        ),
+    )
+    parser.add_argument("files", nargs="*", help="One or more CSV extract files")
+    parser.add_argument("--dir", dest="directory",
+                         help="Directory containing CSV extracts (all *.csv files are used)")
+    parser.add_argument("-o", "--output", dest="output",
+                         help="Output .xlsx path (default: derived from the first input file)")
+    return parser.parse_args()
+
+
 def main():
-    if len(sys.argv) < 2:
+    args = _parse_args()
+
+    csv_paths = list(args.files)
+    if args.directory:
+        found = sorted(glob.glob(os.path.join(args.directory, "*.csv")))
+        if not found:
+            sys.exit(f"ERROR: No .csv files found in {args.directory}")
+        csv_paths.extend(found)
+
+    if not csv_paths:
         print(__doc__)
-        print("Example:")
-        print("  python iconnect_validator.py payroll_april2026.csv")
-        print("  python iconnect_validator.py payroll_april2026.csv my_report.xlsx")
         sys.exit(0)
 
-    csv_path = sys.argv[1]
-    if not os.path.isfile(csv_path):
-        sys.exit(f"ERROR: File not found: {csv_path}")
+    for p in csv_paths:
+        if not os.path.isfile(p):
+            sys.exit(f"ERROR: File not found: {p}")
 
-    output_path = sys.argv[2] if len(sys.argv) >= 3 else \
-        os.path.splitext(csv_path)[0] + "_validation_flags.xlsx"
+    output_path = args.output or (
+        os.path.splitext(csv_paths[0])[0] + "_validation_flags.xlsx"
+        if len(csv_paths) == 1 else "iconnect_validation_flags.xlsx"
+    )
 
-    print(f"Validating: {csv_path}")
-    file_flags, row_flags, rows, headers = validate(csv_path)
+    # ── Validate each file independently ──
+    period_results = []
+    all_flags = []
 
-    total = len(file_flags) + len(row_flags)
-    print(f"Rows read:  {len(rows)}")
-    print(f"Flags found: {total}  "
-          f"(file-level: {len(file_flags)}, row-level: {len(row_flags)})")
+    for path in csv_paths:
+        print(f"Validating: {path}")
+        file_flags, row_flags, rows, headers = validate(path)
+        fname = os.path.basename(path)
+        period_date     = _first_valid_period_date(rows)
+        period_date_str = period_date.strftime("%d/%m/%Y") if period_date else "Unknown"
 
-    build_excel(file_flags, row_flags, rows, output_path,
-                os.path.basename(csv_path))
+        for f in file_flags + row_flags:
+            all_flags.append(dict(f, file=fname, period=period_date_str))
 
+        period_results.append(dict(
+            file=fname, period_date=period_date, period_date_str=period_date_str,
+            rows=rows, headers=headers,
+        ))
+        print(f"  Rows: {len(rows)}  |  Period: {period_date_str}  |  "
+              f"Flags: {len(file_flags) + len(row_flags)}")
+
+    # ── Order periods chronologically; undated periods sort last with a warning ──
+    dated   = [p for p in period_results if p["period_date"] is not None]
+    undated = [p for p in period_results if p["period_date"] is None]
+    dated.sort(key=lambda p: p["period_date"])
+    if undated:
+        print(f"\nWARNING: {len(undated)} file(s) have no readable PAYROLL_PERIOD_END_DATE "
+              f"and could not be placed in chronological order: "
+              f"{', '.join(p['file'] for p in undated)}")
+    period_results = dated + undated
+
+    # ── Reject duplicate period end dates across files (ambiguous submissions) ──
+    seen_dates = defaultdict(list)
+    for p in dated:
+        seen_dates[p["period_date_str"]].append(p["file"])
+    dupes = {d: files for d, files in seen_dates.items() if len(files) > 1}
+    if dupes:
+        print("\nERROR: More than one file claims the same PAYROLL_PERIOD_END_DATE:")
+        for d, files in dupes.items():
+            print(f"  {d}: {', '.join(files)}")
+        sys.exit("Resolve the duplicate submission(s) before validating.")
+
+    # ── Cross-period pass (only meaningful with 2+ files, but safe to always run) ──
+    cross_flags, coverage_rows = cross_period_checks(period_results)
+
+    total_single = len(all_flags)
+    total_cross  = len(cross_flags)
+
+    build_excel(all_flags, cross_flags, coverage_rows, output_path)
+
+    print(f"\nFiles validated: {len(csv_paths)}")
+    print(f"Single-file flags: {total_single}")
+    if len(csv_paths) > 1:
+        print(f"Cross-period flags: {total_cross}")
     print(f"\nOutput: {output_path}")
     print("Sheets:")
-    print("  1. Validation Results   — every flag with row, NI, field, code, detail")
-    print("  2. Summary by Flag      — count and rows affected per flag code")
-    print("  3. Flag Reference       — all 34 flag codes with fix guidance")
-    print("  4. Colour Key           — what the highlight colours mean")
-    print("  5. Contribution Rates   — 2026/27 band table for SCHEME_CONT_RATE")
+    print("  1. Validation Results   — every within-file flag: file, period, row, field, code")
+    print("  2. Summary by Flag      — count and rows affected per flag code (all flags)")
+    print("  3. Cross-Period Checks  — flags that only exist by comparing periods")
+    print("  4. Period Coverage      — rows/joiners/leavers per file, in chronological order")
+    print("  5. Flag Reference       — all 44 flag codes with fix guidance")
+    print("  6. Colour Key           — what the highlight colours mean")
+    print("  7. Contribution Rates   — 2026/27 band table for SCHEME_CONT_RATE")
 
-    if total == 0:
-        print("\nNo issues found — file appears to conform to the guide.")
+    grand_total = total_single + total_cross
+    if grand_total == 0:
+        print("\nNo issues found — file(s) appear to conform to the guide.")
     else:
-        high = sum(1 for f in (file_flags + row_flags)
+        high = sum(1 for f in (all_flags + cross_flags)
                    if SEV_FILL.get(FLAGS[f["code"]][0], "") == "FF4C4C")
-        med  = total - high
+        med  = grand_total - high
         print(f"\n  HIGH (red)   : {high}")
         print(f"  MEDIUM/LOW   : {med}")
 
